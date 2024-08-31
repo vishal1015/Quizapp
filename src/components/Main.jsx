@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { FaPlay } from "react-icons/fa";
 import {
   CATEGORIES,
   NUM_OF_QUESTIONS,
@@ -12,17 +13,17 @@ import { shuffle } from "../utils";
 const Main = ({ startMain }) => {
   console.log( typeof(startMain));
   const [category, setCategory] = useState("0");
-  const [numOfQuestions, setNumOfQuestions] = useState(5);
+  const [numOfQuestions, setNumOfQuestions] = useState(3);
   const [difficulty, setDifficulty] = useState("easy");
   const [questionsType, setQuestionsType] = useState("0");
   const [countdownTime, setCountdownTime] = useState({
     hours: 0,
-    minutes: 120,
+    minutes: 60,
     seconds: 0,
   });
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState(null);
-  const [offline, setOffline] = useState(false);
+  // const [offline, setOffline] = useState(false);
 
   const handleTimeChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +38,7 @@ const Main = ({ startMain }) => {
     (countdownTime.hours || countdownTime.minutes || countdownTime.seconds);
 
   const fetchData = () => {
+    console.log("i'm running");
     setProcessing(true);
 
     if (error) setError(null);
@@ -78,31 +80,26 @@ const Main = ({ startMain }) => {
 
           setProcessing(false);
           console.log(startMain);
-          // startMain(
-          //   results,
-          //   countdownTime.hours + countdownTime.minutes + countdownTime.seconds
-          // );
+          startMain(
+            results,
+            countdownTime.hours + countdownTime.minutes + countdownTime.seconds
+          );
         }, 1000)
       )
       .catch((error) =>
         setTimeout(() => {
-          if (!navigator.onLine) {
-            setOffline(true);
-          } else {
             setProcessing(false);
             setError(error);
-          }
         }, 1000)
       );
   };
 
-  if (offline) return <div>You are offline!</div>;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto px-[20%] py-[2%] bg-slate-200">
       <div className="bg-white shadow-md rounded-lg p-6">
-        <div className="flex items-center mb-4">
-          <h1 className="text-2xl font-bold">The Ultimate Trivia Game</h1>
+        <div className="flex items-center justify-center mb-4">
+          <h1 className="text-2xl font-bold">Are You Ready for Quiz?</h1>
         </div>
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
@@ -229,15 +226,18 @@ const Main = ({ startMain }) => {
               : "bg-blue-500 hover:bg-blue-700 text-white"
           }`}
         >
-          {processing ? "Processing..." : "Play Now"}
-        </button>
+          <div className=" flex  justify-center items-center gap-2 ">
+            <FaPlay />
+            {processing ? "Processing..." : "Play Now"}
+          </div>
+        </button>   
       </div>
     </div>
   );
 };
 
-// Main.propTypes = {
-//   startMain: PropTypes.func.isRequired,
-// };
+Main.propTypes = {
+  startMain: PropTypes.func.isRequired,
+};
 
 export default Main;

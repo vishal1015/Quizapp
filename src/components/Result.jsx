@@ -1,23 +1,18 @@
 import  { useState } from "react";
 import Stats from "./Stats";
 import QNA from "./QNA";
-
+import PropTypes from "prop-types";
 const Result = (
-//   {
-//   totalQuestions,
-//   correctAnswers,
-//   timeTaken,
-//   questionsAndAnswers,
-//   replayQuiz,
-//   resetQuiz,
-// }
+  {
+  totalQuestions,
+  correctAnswers,
+  timeTaken,
+  questionsAndAnswers,
+  replayQuiz,
+  resetQuiz,
+}
 ) => {
-   const totalQuestions =5
-   const correctAnswers=3
-   const timeTaken= 2
-   const questionsAndAnswers =[]
-   const replayQuiz=3
-   const resetQuiz= 3;
+
   const [activeTab, setActiveTab] = useState("Stats");
 
   const handleTabClick = (name) => {
@@ -66,5 +61,13 @@ const Result = (
   );
 };
 
+Result.propTypes = {
+  totalQuestions: PropTypes.number.isRequired,
+  correctAnswers: PropTypes.number.isRequired,
+  timeTaken: PropTypes.number.isRequired,
+  questionsAndAnswers: PropTypes.array.isRequired,
+  replayQuiz: PropTypes.func.isRequired,
+  resetQuiz: PropTypes.func.isRequired,
+};
 
 export default Result;

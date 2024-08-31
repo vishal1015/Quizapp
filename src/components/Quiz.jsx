@@ -1,9 +1,9 @@
 import  { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import he from "he";
-
 import Countdown from "./Countdown"
 import { getLetter } from "../utils";
+import { FaArrowRight } from "react-icons/fa";
 
 const Quiz = (
   { data, countdownTime, endQuiz }
@@ -112,7 +112,10 @@ const Quiz = (
             onClick={handleNext}
             disabled={!userSelectedAns}
           >
-            Next
+            <div className=" flex gap-2 justify-center items-center text-black font-semibold">
+              <h1>Next</h1>
+              <FaArrowRight />
+            </div>
           </button>
         </div>
       </div>

@@ -5,6 +5,7 @@ import Loader from "./components/Loader";
 import Quiz from "./components/Quiz";
 import { shuffle } from "./utils";
 import { useState } from "react";
+import Header from "./components/Header";
 
 
 const App = () => {
@@ -90,6 +91,7 @@ console.log(typeof(startQuiz));
 
   return (
     <>
+     <Header />
       {loading && <Loader {...loadingMessage} />}
       {!loading && !isQuizStarted && !isQuizCompleted && (
         <Main startMain={startQuiz} />

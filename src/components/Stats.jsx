@@ -1,4 +1,5 @@
-
+import { FaHome } from "react-icons/fa";
+import { FaRedo } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { calculateScore, calculateGrade, timeConverter } from "../utils";
 
@@ -34,13 +35,19 @@ const Stats = ({
           className="bg-blue-500 text-white py-2 px-4 rounded-lg mr-4 flex items-center"
           onClick={replayQuiz}
         >
-          <span className="material-icons mr-2">redo</span>Play Again
+          <div className=" mr-2 flex justify-center items-center gap-2 ">
+            <FaRedo />
+            <h1>Play Again</h1>
+          </div>
         </button>
         <button
           className="bg-teal-500 text-white py-2 px-4 rounded-lg flex items-center"
           onClick={resetQuiz}
         >
-          <span className="material-icons mr-2">home</span>Back to Home
+          <div className=" mr-2 flex justify-center items-center gap-2 ">
+            <FaHome />
+            <h1>Back to Home</h1>
+          </div>
         </button>
       </div>
     </div>
